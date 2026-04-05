@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [20]
+        antd-version: [5, 6]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -21,5 +22,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
+      - name: Install antd version
+        run: pnpm add antd@${{ matrix.antd-version }}
       - name: Run tests
         run: pnpm run test
